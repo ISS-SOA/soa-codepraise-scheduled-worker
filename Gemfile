@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.7.2'
+ruby File.read('.ruby-version').strip
 
 # Configuration
-gem 'econfig'
+gem 'figaro', '~> 1.2'
 
 # Messaging
-gem 'aws-sdk-sqs'
+gem 'aws-sdk-sqs', '~> 1.48'
 
 # Representers
 gem 'multi_json'

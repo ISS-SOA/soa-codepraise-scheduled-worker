@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-require 'econfig'
+require 'figaro'
 
 module CodePraise
   # Setup config environment
   class CloneReportWorker
-    extend Econfig::Shortcut
-    Econfig.env = ENV['WORKER_ENV'] || 'development'
-    Econfig.root = File.expand_path('..', File.dirname(__FILE__))
+    # Environment variables setup
+    Figaro.application = Figaro::Application.new(
+      environment: ENV['WORKER_ENV'] || 'development',
+      path: File.expand_path('config/secrets.yml')
+    )
+    Figaro.load
+    def self.config() = Figaro.env
   end
 end
